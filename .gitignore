@@ -1,0 +1,16 @@
+# next.js
+app/.next/
+app/out/
+
+# production
+app/build
+
+
+# vercel
+app/.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+api/config.js
+.env

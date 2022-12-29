@@ -1,0 +1,11 @@
+services:
+  app:
+    volumes:
+      - ./app:/app
+    environment:
+      ENVIRONMENT: development
+  api:
+    volumes:
+      - ./api:/api
+    environment:
+      ENVIRONMENT: development

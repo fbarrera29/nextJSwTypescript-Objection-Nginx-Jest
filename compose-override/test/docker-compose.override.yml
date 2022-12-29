@@ -1,0 +1,7 @@
+services:
+  app:
+    environment:
+      ENVIRONMENT: testing
+  api:
+    environment:
+      ENVIRONMENT: testing

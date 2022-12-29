@@ -1,0 +1,7 @@
+services:
+  app:
+    environment:
+      ENVIRONMENT: production
+  api:
+    environment:
+      ENVIRONMENT: production

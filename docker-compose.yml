@@ -1,0 +1,59 @@
+volumes:
+  mysql_volume:
+  app_node_modules_volume:
+  app_next_volume:
+  api_node_modules_volume:
+
+services:
+  app:
+    build:
+      context: ./app
+    image: app
+    container_name: app
+    volumes:
+      - app_node_modules_volume:/app/node_modules
+      - app_next_volume:/app/.next
+    environment:
+      TZ: Europe/Rome
+    ports:
+      - 3000:3000
+    restart: always
+  api:
+    build:
+      context: ./api
+    image: api
+    container_name: api
+    environment:
+      TZ: Europe/Rome
+    volumes:
+      - api_node_modules_volume:/api/node_modules
+    ports:
+      - 5000:5000
+    restart: always
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - 3306:3306
+    environment:
+      TZ: Europe/Rome
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
+    volumes:
+      - mysql_volume:/var/lib/mysql
+  nginx:
+    image: nginx:1
+    container_name: nginx
+    depends_on:
+      - api
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
