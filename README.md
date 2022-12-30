@@ -1,4 +1,4 @@
-# portfolio-website
+# personal-page-website
 
 This project is based on main technology i use at work (Express, Objection, NextJS, Nginx, ecc). All this services are managed by Docker.
 
