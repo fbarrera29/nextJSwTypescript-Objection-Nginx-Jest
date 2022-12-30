@@ -1,18 +1,18 @@
 import { insertSeedsByEnv } from '../utils/misc.js'
 
 const defaultData = [
-    {
-        id: 1,
-        sections_id: 1,
-        title: 'First title',
-        description: 'First description',
-      },
-      {
-        id: 2,
-        sections_id: 2,
-        title: 'Second title',
-        description: 'Second description',
-      },
+  {
+    id: 1,
+    sections_id: 1,
+    title: 'First title',
+    description: 'First description',
+  },
+  {
+    id: 2,
+    sections_id: 2,
+    title: 'Second title',
+    description: 'Second description',
+  },
 ]
 
 const productionData = []

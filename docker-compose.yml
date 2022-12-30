@@ -9,7 +9,7 @@ services:
     build:
       context: ./app
     image: app
-    container_name: app
+    container_name: personal_page_app
     volumes:
       - app_node_modules_volume:/app/node_modules
       - app_next_volume:/app/.next
@@ -22,7 +22,7 @@ services:
     build:
       context: ./api
     image: api
-    container_name: api
+    container_name: personal_page_api
     environment:
       TZ: Europe/Rome
     volumes:
@@ -32,7 +32,7 @@ services:
     restart: always
   mysql:
     image: mysql:8
-    container_name: mysql
+    container_name: personal_page_mysql
     ports:
       - 3306:3306
     environment:
@@ -48,7 +48,7 @@ services:
       - mysql_volume:/var/lib/mysql
   nginx:
     image: nginx:1
-    container_name: nginx
+    container_name: personal_page_nginx
     depends_on:
       - api
     restart: always

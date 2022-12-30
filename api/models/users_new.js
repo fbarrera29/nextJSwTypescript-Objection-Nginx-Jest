@@ -1,6 +1,7 @@
 import { Model, raw } from 'objection'
 import objectionSoftDelete from 'objection-js-soft-delete'
-import Sections from './sectionss.js'
+
+import Sections from './sections.js'
 
 const softDelete = objectionSoftDelete.default({
   columnName: 'deleted_at',
@@ -33,17 +34,17 @@ class Users_new extends softDelete(Model) {
 
   static get relationMappings() {
     return {
-        users_new: {
-          relation: Model.HasManyRelation,
-          modelClass: Sections,
-          join: {
-            from: 'users_new.id',
-            to: 'sections.user_id',
-          },
-          filter: (f) => {
-            f.whereNotDeleted()
-          },
+      sections: {
+        relation: Model.HasManyRelation,
+        modelClass: Sections,
+        join: {
+          from: 'users_new.id',
+          to: 'sections.users_new_id',
         },
+        filter: (f) => {
+          f.whereNotDeleted()
+        },
+      },
     }
   }
 }

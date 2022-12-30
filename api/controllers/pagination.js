@@ -1,10 +1,42 @@
 import Users from '../models/users.js'
+import Users_new from '../models/users_new.js'
 import { errorResponse, successResponse } from '../utils/responseHelper.js'
 
 const _users = async (req, res) => {
   const { page, resultsInPage } = req.query
   try {
     const users = await Users.query().orderBy('id').page(page, resultsInPage)
+    return successResponse({ data: users.results, res })
+  } catch (err) {
+    return errorResponse({ err, res })
+  }
+}
+
+const _users_new = async (req, res) => {
+  const { page, resultsInPage } = req.query
+  try {
+    const users = await Users_new.query().orderBy('id').page(page, resultsInPage)
+    return successResponse({ data: users.results, res })
+  } catch (err) {
+    return errorResponse({ err, res })
+  }
+}
+
+const _users_newWithGraph = async (req, res) => {
+  const { page, resultsInPage } = req.query
+
+  try {
+    // const users = await Users.query()
+    //   .orderBy('users.id')
+    //   .withGraphFetched('other_movies')
+    //   .page(page, resultsInPage)
+    //   .debug()
+
+    const users = await Users_new.query()
+      .orderBy('users_new.id')
+      .withGraphJoined('sections')
+      .page(page, resultsInPage)
+      .debug()
     return successResponse({ data: users.results, res })
   } catch (err) {
     return errorResponse({ err, res })
@@ -44,4 +76,4 @@ const _usersWithGraph = async (req, res) => {
   }
 }
 
-export { _users, _usersWithGraph }
+export { _users, _usersWithGraph, _users_new, _users_newWithGraph }

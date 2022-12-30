@@ -1,5 +1,6 @@
 import { Model, raw } from 'objection'
 import objectionSoftDelete from 'objection-js-soft-delete'
+
 import Sections from './sections'
 
 const softDelete = objectionSoftDelete.default({
@@ -32,17 +33,17 @@ class Elements extends softDelete(Model) {
 
   static get relationMappings() {
     return {
-        sections: {
-            relation: Model.BelongsToOneRelation,
-            modelClass: Sections,
-            join: {
-              from: 'elements.sections_id',
-              to: 'sections.id',
-            },
-            filter: (f) => {
-              f.whereNotDeleted()
-            },
-          },
+      sections: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Sections,
+        join: {
+          from: 'elements.sections_id',
+          to: 'sections.id',
+        },
+        filter: (f) => {
+          f.whereNotDeleted()
+        },
+      },
     }
   }
 }

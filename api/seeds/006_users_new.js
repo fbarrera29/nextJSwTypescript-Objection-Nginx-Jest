@@ -1,20 +1,20 @@
 import { insertSeedsByEnv } from '../utils/misc.js'
 
 const defaultData = [
-    {
-        id: 1,
-        name: 'First name',
-        surname: 'First surname',
-        pwd_hash: '****',
-        admin: true,
-      },
-      {
-        id: 2,
-        name: 'Second name',
-        surname: 'Second surname',
-        pwd_hash: '****',
-        admin: false,
-      },
+  {
+    id: 1,
+    name: 'First name',
+    surname: 'First surname',
+    pwd_hash: '****',
+    admin: true,
+  },
+  {
+    id: 2,
+    name: 'Second name',
+    surname: 'Second surname',
+    pwd_hash: '****',
+    admin: false,
+  },
 ]
 
 const productionData = []

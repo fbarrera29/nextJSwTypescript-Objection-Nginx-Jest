@@ -24,12 +24,7 @@ const knex_config = {
     password: '<environment_passowrd>',
   },
 }
-const dev_seeds = [
-  'development',
-  'testing',
-  'staging',
-  'production',
-]
+const dev_seeds = ['development', 'testing', 'staging', 'production']
 
 const jwt_secret = '<secret_jwt>'
 
