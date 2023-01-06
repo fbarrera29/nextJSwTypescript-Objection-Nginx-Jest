@@ -5,6 +5,7 @@ app/out/
 # production
 app/build
 
+node_modules
 
 # vercel
 app/.vercel
@@ -13,4 +14,5 @@ app/.vercel
 *.tsbuildinfo
 next-env.d.ts
 api/config.js
+app/config.js
 .env

@@ -1,18 +1,19 @@
-export default function Home() {
-  const pong = async () => {
-    const response = await fetch("http://localhost:80/api/healthcheck/ping");
-    console.log(response);
-  };
-  const getUsers = async () => {
-    const response = await fetch(
-      "http://localhost:80/api/demo-pagination/users"
-    );
-    console.log(response);
-  };
+import {
+  Button,
+  Flex,
+  Heading,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
+
+const Home = () => {
+  const { toggleColorMode } = useColorMode();
+  const formBackground = useColorModeValue("gray.100", "gray.700");
   return (
-    <>
-      <button onClick={pong}>click here to call pong</button>
-      <button onClick={getUsers}>click here to get users</button>
-    </>
+    <Flex height="100vh" justifyContent="center">
+      <Heading mb={6}>Home page</Heading>
+    </Flex>
   );
-}
+};
+
+export default Home;
