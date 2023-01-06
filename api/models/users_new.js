@@ -25,10 +25,12 @@ class Users_new extends softDelete(Model) {
         id: { type: 'integer' },
         name: { type: 'string', minLength: 1, maxLength: 255 },
         surname: { type: 'string', minLength: 1, maxLength: 255 },
+        email: { type: 'string', minLength: 1, maxLength: 255 },
+
         pwd_hash: { type: 'string', minLength: 1, maxLength: 255 },
         admin: { type: 'boolean' },
       },
-      required: ['name', 'surname', 'pwd_hash', 'admin'],
+      required: ['name', 'surname','email', 'pwd_hash', 'admin'],
     }
   }
 

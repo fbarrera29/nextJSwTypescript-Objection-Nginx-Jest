@@ -6,6 +6,7 @@ const up = (knex) =>
         table.increments('id').primary()
         table.string('name', 255).notNullable()
         table.string('surname', 255).notNullable()
+        table.string('email', 255).notNullable()
         table.string('pwd_hash', 255).notNullable()
         table.boolean('admin').notNullable().defaultTo(false)
 

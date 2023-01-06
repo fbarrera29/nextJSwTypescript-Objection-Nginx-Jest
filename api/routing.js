@@ -2,6 +2,7 @@ import { _checkToken, _login } from './controllers/auth.js'
 import _ping from './controllers/healthcheck.js'
 import { _users, _usersWithGraph, _users_new, _users_newWithGraph } from './controllers/pagination.js'
 import { _transaction } from './controllers/transaction.js'
+import { _registration } from './controllers/new_users.js'
 
 export default (router) => {
   router.get('/healthcheck/ping', _ping)
@@ -16,4 +17,5 @@ export default (router) => {
 
   router.post('/login', _login)
   router.post('/check-token', _checkToken)
+  router.post('/registration', _registration)
 }
