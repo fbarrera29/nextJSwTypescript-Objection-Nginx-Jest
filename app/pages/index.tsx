@@ -1,17 +1,23 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Link, Flex, Heading, Box } from "@chakra-ui/react";
+
+import NextLink from "next/link";
 
 const Home = () => {
-  const { toggleColorMode } = useColorMode();
-  const formBackground = useColorModeValue("gray.100", "gray.700");
   return (
-    <Flex height="100vh" justifyContent="center">
-      <Heading mb={6}>Home page</Heading>
+    <Flex height="100vh" align="center" direction="column">
+      <Box>
+        <Heading mb={6}>Home page</Heading>
+      </Box>
+      <Box>
+        <Flex justifyContent="center" direction="column">
+          <Link as={NextLink} href="/login">
+            Login
+          </Link>
+          <Link as={NextLink} href="/registration">
+            Registration
+          </Link>
+        </Flex>
+      </Box>
     </Flex>
   );
 };
