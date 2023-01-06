@@ -20,8 +20,7 @@ const _login = async (req, res) => {
 
 const _checkToken = async (req, res) => {
   try {
-    console.log(req.headers.authorization.slice(7))
-    jwt.decode(req.headers.authorization.slice(7), jwt_secret)
+    jwt.decode(req.headers.authorization, jwt_secret)
     return successResponse({ data: 'ok', res })
   } catch (err) {
     return errorResponse({ statusCode: 500, err, res })
