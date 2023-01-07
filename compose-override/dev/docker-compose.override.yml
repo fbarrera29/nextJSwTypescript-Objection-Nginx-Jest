@@ -1,3 +1,6 @@
+volumes:
+  test_node_modules_volume:
+
 services:
   app:
     volumes:
@@ -9,3 +12,12 @@ services:
       - ./api:/api
     environment:
       ENVIRONMENT: development
+  test:
+    build:
+      context: ./test
+    container_name: personal_page_test
+    image: personal_page_test
+    volumes:
+      - test_node_modules_volume:/home/node/test/node_modules
+    restart: unless-stopped
+    network_mode: "host"
