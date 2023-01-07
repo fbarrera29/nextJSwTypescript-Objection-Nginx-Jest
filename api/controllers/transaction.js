@@ -35,12 +35,12 @@ const addUser = async (trx, addressId) => {
   })
 }
 
-const addUser_new = async (trx) =>{
+const addUser_new = async (trx) => {
   return await Users_new.query(trx).insert({
     name: 'name',
     surname: 'surname',
     pwd_hash: 'testing_insert_pwd',
-    admin: true
+    admin: true,
   })
 }
 
@@ -53,9 +53,9 @@ const _transaction = async (req, res) => {
     console.log(typeof address.id)
     const user = await addUser(trx, address.id)
     console.log('add user:', user)
-    const users_new = await addUser_new(trx);
-    const section = await addSections(trx, users_new.id);
-    console.log('added section with id ', section.id);
+    const users_new = await addUser_new(trx)
+    const section = await addSections(trx, users_new.id)
+    console.log('added section with id ', section.id)
     return successResponse({ data: user, res, trx })
   } catch (err) {
     return errorResponse({ err, res, trx })
