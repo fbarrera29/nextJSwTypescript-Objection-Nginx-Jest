@@ -13,7 +13,7 @@ const LoginRegistration = () => {
   return (
     <Box>
       {registration === false ? (
-        <Login ecco="sasdf" />
+        <Login onChangeRegistration={changeRegistrationHandler} />
       ) : (
         <Registration onChangeRegistration={changeRegistrationHandler} />
       )}

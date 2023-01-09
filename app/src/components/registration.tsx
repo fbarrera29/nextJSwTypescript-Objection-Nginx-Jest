@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { _registration } from "../src/api";
+import { _registration } from "../api";
 import {
   Button,
   Flex,
@@ -10,14 +10,18 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { validateEmail } from "../src/utils";
+import { validateEmail } from "../utils";
+import { useAppDispatch } from "../store/hooks";
+import { authActions } from "../store/auth";
+import User from "../models/user";
 
 const Registration: React.FC<{
   onChangeRegistration: (value: boolean) => void;
 }> = (props) => {
+  const dispatch = useAppDispatch();
   const { toggleColorMode } = useColorMode();
   const formBackground = useColorModeValue("gray.100", "gray.700");
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<User>({
     name: "",
     surname: "",
     email: "",
@@ -53,16 +57,14 @@ const Registration: React.FC<{
       formData.password != "" &&
       validateEmail(formData.email)
     ) {
-      console.log({ formData });
       const registrated = await _registration(formData);
+      if (registrated.success === true) {
+        dispatch(authActions.login());
+      }
     } else {
       console.log("not validated");
     }
     console.log({ errors });
-  };
-
-  const cazzo = () => {
-    props.onChangeRegistration(false);
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +103,11 @@ const Registration: React.FC<{
           Registration
         </Button>
 
-        <Button mt={6} colorScheme="teal" onClick={cazzo}>
+        <Button
+          mt={6}
+          colorScheme="teal"
+          onClick={() => props.onChangeRegistration(false)}
+        >
           Login
         </Button>
 

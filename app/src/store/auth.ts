@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Auth from "../models/auth";
 import { RootState } from "./store";
 
-interface AuthState {
-  isAuthenticated: Boolean;
-}
-
-const initialAuthState: AuthState = {
+const initialAuthState: Auth = {
   isAuthenticated: false,
 };
 

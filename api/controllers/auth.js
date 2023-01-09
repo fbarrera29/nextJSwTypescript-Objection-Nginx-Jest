@@ -1,11 +1,19 @@
 import dayjs from 'dayjs'
 import jwt from 'jwt-simple'
+import Users_new from '../models/users_new.js'
 
 import { jwt_secret } from '../config.js'
 import { errorResponse, successResponse } from '../utils/responseHelper.js'
 
 const _login = async (req, res) => {
   try {
+    const users = await Users_new.query().where('email', '=', req.body.email).select();
+    if(users.length === 0){
+      return errorResponse({ err:"incorrect email ", res })
+    }
+    if(users[0].pwd_hash !== req.body.password){
+      return errorResponse({ err:"incorrect password", res })
+    }
     const payload = {
       email: req.body.email,
       exp: dayjs().add(2, 'hours').unix(), // expiration date of the token
@@ -20,7 +28,7 @@ const _login = async (req, res) => {
 
 const _checkToken = async (req, res) => {
   try {
-    jwt.decode(req.headers.authorization, jwt_secret)
+    jwt.decode(req.body.jwt, jwt_secret)
     return successResponse({ data: 'ok', res })
   } catch (err) {
     return errorResponse({ statusCode: 500, err, res })
