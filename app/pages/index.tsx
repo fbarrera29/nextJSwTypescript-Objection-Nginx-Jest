@@ -38,7 +38,8 @@ const Home = () => {
                 ) : (
                     <Flex justifyContent='center' direction='column'>
                         <UserList></UserList>
-                        <Button mb={6} onClick={logout}>
+
+                        <Button mt={6} onClick={logout}>
                             Log out
                         </Button>
                     </Flex>
