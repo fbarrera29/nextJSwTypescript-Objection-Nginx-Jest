@@ -29,6 +29,9 @@ async function _checkToken() {
     return false;
   }
   const response = await axios.post(host + "/api/check-token", { jwt: jwt });
+  if (response.data.data === "expired") {
+    localStorage.removeItem("token");
+  }
   return response;
 }
 
@@ -45,4 +48,12 @@ async function _registration(data: User) {
   }
 }
 
-export { _login, _registration, _checkToken };
+async function _getUsers(page: number, resultsInPage: number) {
+  const response = await axios.post(host + "/api/get-users", {
+    page: page,
+    resultsInPage: resultsInPage,
+  });
+  return response;
+}
+
+export { _login, _registration, _checkToken, _getUsers };

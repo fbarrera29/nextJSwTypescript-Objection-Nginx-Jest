@@ -9,6 +9,7 @@ import Login from "../src/components/login";
 import Registration from "../src/components/registration";
 import LoginRegistration from "../src/components/loginRegistration";
 import { _checkToken } from "../src/api";
+import UserList from "../src/components/userList";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ const Home = () => {
           <LoginRegistration />
         ) : (
           <Flex justifyContent="center" direction="column">
-            Benvenuto
+            <UserList></UserList>
             <Button mb={6} onClick={logout}>
               Log out
             </Button>

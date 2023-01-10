@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { validateEmail } from "../utils";
 import { useAppDispatch } from "../store/hooks";
 import { authActions } from "../store/auth";
 

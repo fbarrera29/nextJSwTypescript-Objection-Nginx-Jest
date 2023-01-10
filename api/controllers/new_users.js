@@ -18,11 +18,21 @@ const _registration = async (req, res) => {
   try {
     trx = await Model.startTransaction()
     const new_users = await addUser_new(req, trx)
-    delete new_users.pwd_hash;
+    delete new_users.pwd_hash
     return successResponse({ data: new_users, res, trx })
   } catch (err) {
     return errorResponse({ err, res, trx })
   }
 }
 
-export { _registration }
+const _getUsers = async (req, res) => {
+  const { page, resultsInPage } = req.body
+  try {
+    const users = await Users_new.query().orderBy('id').page(page, resultsInPage)
+    return successResponse({ data: users.results, res })
+  } catch (err) {
+    return errorResponse({ err, res })
+  }
+}
+
+export { _registration, _getUsers }
