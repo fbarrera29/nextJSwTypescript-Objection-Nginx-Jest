@@ -1,8 +1,11 @@
 import { Button, Card, Heading, Image, Stack, CardBody, Text, CardFooter } from '@chakra-ui/react';
+import { _deleteUser } from '../api';
 import User from '../models/user';
 
 const SingleUser: React.FC<{
     user: User;
+    key: number;
+    onDeleteUser: (email: string) => void;
 }> = props => {
     return (
         <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
@@ -23,8 +26,8 @@ const SingleUser: React.FC<{
                 </CardBody>
 
                 <CardFooter>
-                    <Button variant='solid' colorScheme='blue'>
-                        Buy Latte
+                    <Button variant='solid' colorScheme='blue' onClick={() => props.onDeleteUser(props.user.email)}>
+                        Delete user
                     </Button>
                 </CardFooter>
             </Stack>

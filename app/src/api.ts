@@ -56,4 +56,11 @@ async function _getUsers(page: number, resultsInPage: number) {
     return response;
 }
 
-export { _login, _registration, _checkToken, _getUsers };
+async function _deleteUser(email: string) {
+    const response = await axios.post(host + '/api/delete-user', {
+        email: email,
+    });
+    return response;
+}
+
+export { _login, _registration, _checkToken, _getUsers, _deleteUser };
