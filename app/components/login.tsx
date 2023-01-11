@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { authActions } from '../store/auth';
 
-import { _login } from '../api';
+import { _login } from '../src/api';
 import { Button, Flex, Heading, Input, useColorMode, useColorModeValue } from '@chakra-ui/react';
 
 const Login: React.FC<{ onChangeRegistration: (value: boolean) => void }> = props => {

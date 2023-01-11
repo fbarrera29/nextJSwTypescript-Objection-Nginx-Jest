@@ -1,17 +1,16 @@
 import { Button, Card, Heading, WrapItem, Avatar, Stack, CardBody, Text, CardFooter } from '@chakra-ui/react';
-import { _deleteUser } from '../api';
-import User from '../models/user';
+import { _deleteUser } from '../src/api';
+import User from '../src/models/user';
 
 const SingleUser: React.FC<{
     user: User;
     key: number;
     onDeleteUser: (email: string) => void;
 }> = props => {
+    const image = require('../public/prova.jpg');
     return (
         <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
-            <WrapItem>
-                <Avatar size='xl' name={props.user.name + ' ' + props.user.surname} />
-            </WrapItem>
+            <img src='../public/prova.jpg' alt='My Image' />
 
             <Stack>
                 <CardBody>

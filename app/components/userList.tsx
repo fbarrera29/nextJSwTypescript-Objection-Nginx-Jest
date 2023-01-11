@@ -1,6 +1,6 @@
 import SingleUser from './singleUser';
 import { useEffect, useState } from 'react';
-import { _deleteUser, _getUsers } from '../api';
+import { _deleteUser, _getUsers } from '../src/api';
 import { Button, Flex } from '@chakra-ui/react';
 
 const UserList = () => {
@@ -9,7 +9,6 @@ const UserList = () => {
     const resultsInPage = 2;
 
     useEffect(() => {
-        // Your code here
         getUsers();
     }, []);
 

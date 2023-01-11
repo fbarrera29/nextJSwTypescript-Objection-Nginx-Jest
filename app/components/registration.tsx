@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { _registration } from '../api';
+import { _registration } from '../src/api';
 import { Button, Flex, Heading, FormControl, FormLabel, Input, useColorMode, useColorModeValue } from '@chakra-ui/react';
-import { validateEmail } from '../utils';
+import { validateEmail } from '../src/utils';
 import { useAppDispatch } from '../store/hooks';
 import { authActions } from '../store/auth';
-import User from '../models/user';
+import User from '../src/models/user';
 
 const Registration: React.FC<{
     onChangeRegistration: (value: boolean) => void;

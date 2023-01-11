@@ -1,18 +1,17 @@
 import { Flex, Heading, Box, Button } from '@chakra-ui/react';
-import { useAppSelector } from '../src/store/hooks';
+import { useAppSelector } from '../store/hooks';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../src/store/hooks';
-import { authActions } from '../src/store/auth';
-import LoginRegistration from '../src/components/loginRegistration';
+import { useAppDispatch } from '../store/hooks';
+import { authActions } from '../store/auth';
+import LoginRegistration from '../components/loginRegistration';
 import { _checkToken } from '../src/api';
-import UserList from '../src/components/userList';
+import UserList from '../components/userList';
 
 const Home = () => {
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(state => state.auth.isAuthenticated);
 
     useEffect(() => {
-        // Your code here
         const checking = async () => {
             const response = await _checkToken();
             if (response !== false && response.data.success === true && response.data.data === 'ok') {
@@ -33,7 +32,7 @@ const Home = () => {
                 <Heading mb={6}>Home page </Heading>
             </Box>
             <Box>
-                {isAuth == false ? (
+                {isAuth === false ? (
                     <LoginRegistration />
                 ) : (
                     <Flex justifyContent='center' direction='column'>
