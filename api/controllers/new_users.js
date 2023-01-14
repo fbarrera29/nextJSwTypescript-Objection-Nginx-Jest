@@ -39,12 +39,11 @@ const _deleteUser = async (req, res) => {
   let trx
   try {
     trx = await Model.startTransaction()
-    const deleted_user = await Users_new.query(trx).delete().where('email', '=', req.body.email);
+    const deleted_user = await Users_new.query(trx).delete().where('email', '=', req.body.email)
     return successResponse({ data: deleted_user, res, trx })
   } catch (err) {
     return errorResponse({ err, res, trx })
   }
-
 }
 
 export { _registration, _getUsers, _deleteUser }
