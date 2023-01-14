@@ -7,11 +7,11 @@ const SingleUser: React.FC<{
     key: number;
     onDeleteUser: (email: string) => void;
 }> = props => {
-    const image = require('../public/prova.jpg');
     return (
-        <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline'>
-            <img src='../public/prova.jpg' alt='My Image' />
-
+        <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' pb={4}>
+            <WrapItem>
+                <Avatar name={props.user.name + ' ' + props.user.surname} src='public/profile.png' />
+            </WrapItem>
             <Stack>
                 <CardBody>
                     <Heading size='md'>
@@ -22,8 +22,11 @@ const SingleUser: React.FC<{
                 </CardBody>
 
                 <CardFooter>
+                    <Button mr={2} variant='solid' colorScheme='blue' onClick={() => props.onDeleteUser(props.user.email)}>
+                        Edit
+                    </Button>
                     <Button variant='solid' colorScheme='blue' onClick={() => props.onDeleteUser(props.user.email)}>
-                        Delete user
+                        Delete
                     </Button>
                 </CardFooter>
             </Stack>
