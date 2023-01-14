@@ -1,11 +1,11 @@
-import { Flex, Heading, Box, Button } from '@chakra-ui/react';
 import { useAppSelector } from '../store/hooks';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { authActions } from '../store/auth';
 import LoginRegistration from '../components/loginRegistration';
 import { _checkToken } from '../src/api';
-import UserList from '../components/userList';
+import Wrapper from '../components/wrapper';
+import Router from 'next/router';
 
 const Home = () => {
     const dispatch = useAppDispatch();
@@ -21,31 +21,14 @@ const Home = () => {
         checking();
     }, []);
 
-    const logout = () => {
-        dispatch(authActions.logout());
-        localStorage.removeItem('token');
+    const renderHome = () => {
+        if (isAuth === true) {
+            Router.push('/user');
+        }
+        return <LoginRegistration />;
     };
 
-    return (
-        <Flex height='100vh' align='center' direction='column'>
-            <Box>
-                <Heading mb={6}>Home page </Heading>
-            </Box>
-            <Box>
-                {isAuth === false ? (
-                    <LoginRegistration />
-                ) : (
-                    <Flex justifyContent='center' direction='column'>
-                        <UserList></UserList>
-
-                        <Button mt={6} onClick={logout}>
-                            Log out
-                        </Button>
-                    </Flex>
-                )}
-            </Box>
-        </Flex>
-    );
+    return <Wrapper>{renderHome()}</Wrapper>;
 };
 
 export default Home;

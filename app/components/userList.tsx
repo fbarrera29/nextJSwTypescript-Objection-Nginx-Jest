@@ -29,7 +29,7 @@ const UserList = () => {
 
     return (
         <Flex align='center' direction='column'>
-            {users.length !== 0 && users.map(u => <SingleUser user={u} key={u.id} onDeleteUser={deleteSingleUser} />)}{' '}
+            {users.length !== 0 && users.map(u => <SingleUser user={u} key={u.id} id={u.id} onDeleteUser={deleteSingleUser} />)}{' '}
             <Button mt={6} onClick={getUsers}>
                 Load more
             </Button>

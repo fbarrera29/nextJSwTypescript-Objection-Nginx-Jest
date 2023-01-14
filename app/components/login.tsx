@@ -3,10 +3,9 @@ import { useAppDispatch } from '../store/hooks';
 import { authActions } from '../store/auth';
 
 import { _login } from '../src/api';
-import { Button, Flex, Heading, Input, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Button, Flex, Heading, Input, useColorModeValue } from '@chakra-ui/react';
 
 const Login: React.FC<{ onChangeRegistration: (value: boolean) => void }> = props => {
-    const { toggleColorMode } = useColorMode();
     const formBackground = useColorModeValue('gray.100', 'gray.700');
     const loginBackground = useColorModeValue('gray.200', 'gray.800');
     const [email, setEmail] = useState('');
@@ -43,7 +42,6 @@ const Login: React.FC<{ onChangeRegistration: (value: boolean) => void }> = prop
                 <Button mb={6} colorScheme='teal' onClick={() => props.onChangeRegistration(true)}>
                     Registration
                 </Button>
-                <Button onClick={toggleColorMode}>Color mode</Button>
             </Flex>
         </Flex>
     );
