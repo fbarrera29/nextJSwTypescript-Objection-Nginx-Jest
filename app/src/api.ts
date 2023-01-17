@@ -2,7 +2,7 @@ const axios = require('axios');
 const qs = require('qs');
 var sha1 = require('sha1');
 const { host } = require('../config');
-import User from './models/user';
+import { SingleUser } from './models/user';
 
 async function _login(email: string, password: string) {
     const response = await axios.post(
@@ -35,7 +35,7 @@ async function _checkToken() {
     return response;
 }
 
-async function _registration(data: User) {
+async function _registration(data: SingleUser) {
     const response = await axios.post(host + '/api/registration', {
         name: data.name,
         surname: data.surname,
@@ -56,6 +56,22 @@ async function _getUsers(page: number, resultsInPage: number) {
     return response;
 }
 
+async function _updateUser(id: string, name: string, surname: string) {
+    const response = await axios.post(host + '/api/update-user', {
+        user_id: id,
+        name: name,
+        surname: surname,
+    });
+    return response;
+}
+
+async function _getSingleUser(user_id: number) {
+    const response = await axios.post(host + '/api/get-single-user', {
+        user_id: user_id,
+    });
+    return response;
+}
+
 async function _deleteUser(email: string) {
     const response = await axios.post(host + '/api/delete-user', {
         email: email,
@@ -63,4 +79,4 @@ async function _deleteUser(email: string) {
     return response;
 }
 
-export { _login, _registration, _checkToken, _getUsers, _deleteUser };
+export { _login, _registration, _checkToken, _getUsers, _deleteUser, _getSingleUser, _updateUser };

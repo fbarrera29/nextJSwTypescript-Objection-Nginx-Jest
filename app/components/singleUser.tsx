@@ -1,10 +1,10 @@
 import { Button, Card, Heading, WrapItem, Avatar, Stack, CardBody, Text, CardFooter } from '@chakra-ui/react';
 import { _deleteUser } from '../src/api';
-import User from '../src/models/user';
+import { SingleUser } from '../src/models/user';
 import Router from 'next/router';
 
 const SingleUser: React.FC<{
-    user: User;
+    user: SingleUser;
     key: number;
     id: number;
     onDeleteUser: (email: string) => void;

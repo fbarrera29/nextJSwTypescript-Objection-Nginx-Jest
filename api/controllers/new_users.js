@@ -13,6 +13,16 @@ const addUser_new = async (req, trx) => {
   })
 }
 
+const updateUser = async (req, trx) => {
+  return await Users_new.query(trx).patch({ name: req.body.name, surname: req.body.surname }).findById(req.body.user_id)
+}
+
+const getUser = async (req) => {
+  const user = await Users_new.query().findById(req.body.user_id)
+  delete user.pwd_hash
+  return user
+}
+
 const _registration = async (req, res) => {
   let trx
   try {
@@ -35,6 +45,27 @@ const _getUsers = async (req, res) => {
   }
 }
 
+const _updateUser = async (req, res) => {
+  let trx
+  try {
+    trx = await Model.startTransaction()
+    const updated_user = await updateUser(req, trx)
+    const user = await getUser(req)
+    return successResponse({ data: user, res, trx })
+  } catch (err) {
+    return errorResponse({ err, res, trx })
+  }
+}
+
+const _getSingleUser = async (req, res) => {
+  try {
+    const user = await getUser(req)
+    return successResponse({ data: user, res })
+  } catch (err) {
+    return errorResponse({ err, res })
+  }
+}
+
 const _deleteUser = async (req, res) => {
   let trx
   try {
@@ -46,4 +77,4 @@ const _deleteUser = async (req, res) => {
   }
 }
 
-export { _registration, _getUsers, _deleteUser }
+export { _registration, _getUsers, _deleteUser, _getSingleUser, _updateUser }

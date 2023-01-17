@@ -1,14 +1,24 @@
-class User {
+interface User {
     name: string;
     surname: string;
     email: string;
-    password: string;
-    constructor(name: string, surname: string, email: string, password: string) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-    }
 }
 
-export default User;
+export interface SingleUser extends User {
+    password: string;
+}
+
+export interface SingleUserError {
+    name: boolean;
+    surname: boolean;
+    email: boolean;
+    password: boolean;
+}
+
+export interface EditedUser extends User {
+    id: string;
+    admin: boolean;
+    updated_at: string;
+    created_at: string;
+    deleted_at: string;
+}

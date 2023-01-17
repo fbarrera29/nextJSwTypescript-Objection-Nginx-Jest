@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
 import { _registration } from '../src/api';
-import { Button, Flex, Heading, FormControl, FormLabel, Input, useColorModeValue } from '@chakra-ui/react';
-import { validateEmail } from '../src/utils';
+import { Button, Flex, useColorModeValue, Heading } from '@chakra-ui/react';
+import { getSingleUser, getSingleUserError, validateEmail } from '../src/utils';
 import { useAppDispatch } from '../store/hooks';
 import { authActions } from '../store/auth';
-import User from '../src/models/user';
+import { SingleUser, SingleUserError } from '../src/models/user';
+import UserForm from './UserForm';
 
 const Registration: React.FC<{
     onChangeRegistration: (value: boolean) => void;
 }> = props => {
     const dispatch = useAppDispatch();
     const formBackground = useColorModeValue('gray.100', 'gray.700');
-    const [formData, setFormData] = useState<User>({
-        name: '',
-        surname: '',
-        email: '',
-        password: '',
-    });
-    const [errors, setErrors] = useState({
-        name: false,
-        surname: false,
-        email: false,
-        password: false,
-    });
+    const [formData, setFormData] = useState<SingleUser>(getSingleUser());
+    const [errors, setErrors] = useState<SingleUserError>(getSingleUserError());
 
     const formDataIsValid = () => {
         if (formData.name != '') {
@@ -60,26 +51,10 @@ const Registration: React.FC<{
         <Flex height='100vh' alignItems='center' justifyContent='center'>
             <Flex direction='column' background={formBackground} p={40} rounded={6}>
                 <Heading mb={6}>Registration</Heading>
-                <FormControl isRequired isInvalid={errors.name === true}>
-                    <FormLabel>Name</FormLabel>
-                    <Input placeholder='First name' name='name' onChange={handleOnChange} />
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.surname === true}>
-                    <FormLabel>Surname</FormLabel>
-                    <Input placeholder='Surname' name='surname' onChange={handleOnChange} />
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.email === true}>
-                    <FormLabel>Email address</FormLabel>
-                    <Input type='email' name='email' onChange={handleOnChange} />
-                </FormControl>
-                <FormControl isRequired isInvalid={errors.password === true}>
-                    <FormLabel>Password</FormLabel>
-                    <Input type='password' name='password' onChange={handleOnChange} />
-                </FormControl>
+                <UserForm errors={errors} onChange={handleOnChange} user={formData} registration={true}></UserForm>
                 <Button mt={6} colorScheme='teal' onClick={submitData}>
                     Registration
                 </Button>
-
                 <Button mt={6} colorScheme='teal' onClick={() => props.onChangeRegistration(false)}>
                     Login
                 </Button>
