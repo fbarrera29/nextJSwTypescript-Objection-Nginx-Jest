@@ -41,9 +41,6 @@ const UsersPage = () => {
         localStorage.removeItem('token');
     };
 
-    const vediamo = () => {
-        console.log('la lista', userList);
-    };
     return (
         <Wrapper>
             <Flex justifyContent='center' direction='column'>
@@ -51,9 +48,6 @@ const UsersPage = () => {
 
                 <Button mt={6} onClick={logout}>
                     Log out
-                </Button>
-                <Button mt={6} onClick={logout}>
-                    View
                 </Button>
             </Flex>
         </Wrapper>
