@@ -56,7 +56,7 @@ async function _getUsers(page: number, resultsInPage: number) {
     return response;
 }
 
-async function _updateUser(id: string, name: string, surname: string) {
+async function _updateUser(id: number, name: string, surname: string) {
     const response = await axios.post(host + '/api/update-user', {
         user_id: id,
         name: name,

@@ -1,10 +1,10 @@
 import { Button, Card, Heading, WrapItem, Avatar, Stack, CardBody, Text, CardFooter } from '@chakra-ui/react';
 import { _deleteUser } from '../src/api';
-import { SingleUser } from '../src/models/user';
+import { EditedUser } from '../src/models/user';
 import Router from 'next/router';
 
 const SingleUser: React.FC<{
-    user: SingleUser;
+    user: EditedUser;
     key: number;
     id: number;
     onDeleteUser: (email: string) => void;
@@ -12,7 +12,6 @@ const SingleUser: React.FC<{
     const goToEditUserPage = () => {
         Router.push('/user/' + props.id);
     };
-
     return (
         <Card direction={{ base: 'column', sm: 'row' }} overflow='hidden' variant='outline' pb={4}>
             <WrapItem>

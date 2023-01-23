@@ -1,36 +1,17 @@
 import SingleUser from './singleUser';
-import { useEffect, useState } from 'react';
 import { _deleteUser, _getUsers } from '../src/api';
 import { Button, Flex } from '@chakra-ui/react';
+import { EditedUser } from '../src/models/user';
 
-const UserList = () => {
-    const [users, setUsers] = useState<any[]>([]);
-    const [page, setPage] = useState<number>(0);
-    const resultsInPage = 2;
-
-    useEffect(() => {
-        getUsers();
-    }, []);
-
-    const getUsers = async () => {
-        const response = await _getUsers(page, resultsInPage);
-        if (response.data.success === true) {
-            setUsers(users.concat(response.data.data));
-            setPage(page + 1);
-        }
-    };
-
-    const deleteSingleUser = async (email: string) => {
-        const response = await _deleteUser(email);
-        if (response.data.success === true) {
-            getUsers();
-        }
-    };
-
+const UserList: React.FC<{
+    users: EditedUser[];
+    getMore: () => void;
+    delete: (email: string) => void;
+}> = props => {
     return (
         <Flex align='center' direction='column'>
-            {users.length !== 0 && users.map(u => <SingleUser user={u} key={u.id} id={u.id} onDeleteUser={deleteSingleUser} />)}{' '}
-            <Button mt={6} onClick={getUsers}>
+            {props.users.length !== 0 && props.users.map(u => <SingleUser user={u} key={u.id} id={u.id} onDeleteUser={() => props.delete(u.email)} />)}{' '}
+            <Button mt={6} onClick={() => props.getMore()}>
                 Load more
             </Button>
         </Flex>

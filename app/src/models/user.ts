@@ -15,10 +15,14 @@ export interface SingleUserError {
     password: boolean;
 }
 
-export interface EditedUser extends User {
-    id: string;
+export interface EditedUser extends SingleUser {
+    id: number;
     admin: boolean;
     updated_at: string;
     created_at: string;
     deleted_at: string;
+}
+
+export interface UserList {
+    users: EditedUser[];
 }
