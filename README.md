@@ -1,4 +1,4 @@
-# nextJS/typescript/objection/express/nginx/jest/docker project
+# nextJS/typescript/redux-toolkit/objection/express/nginx/jest/docker project
 
 This project is based on main technology i use at work (Express, Objection, NextJS, Nginx, ecc). All this services are managed by Docker.
 
