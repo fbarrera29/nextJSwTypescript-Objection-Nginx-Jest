@@ -4,8 +4,8 @@ const up = (knex) =>
       console.log('Creating table elements')
       return knex.schema.createTable('elements', (table) => {
         table.increments('id').primary()
-        table.integer('sections_id').unsigned().notNullable()
-        table.foreign('sections_id').references('sections.id').onUpdate('CASCADE')
+        table.integer('section_id').unsigned().notNullable()
+        table.foreign('section_id').references('sections.id').onUpdate('CASCADE')
         table.string('title', 255).notNullable()
         table.string('description', 255).notNullable()
         // soft delete

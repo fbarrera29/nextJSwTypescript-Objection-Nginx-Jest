@@ -1,4 +1,4 @@
-import { Flex, Heading, Box, Button } from '@chakra-ui/react';
+import { Flex, Heading, Box } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAppSelector } from '../store/hooks';

@@ -1,8 +1,3 @@
-class Auth {
+export interface Auth {
     isAuthenticated: boolean;
-    constructor(isAuthenticated: boolean) {
-        this.isAuthenticated = isAuthenticated;
-    }
 }
-
-export default Auth;

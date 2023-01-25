@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Auth from '../src/models/auth';
+import { Auth } from '../src/models/auth';
 import { RootState } from './store';
 
 const initialAuthState: Auth = {

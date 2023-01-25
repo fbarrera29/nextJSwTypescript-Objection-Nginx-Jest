@@ -4,7 +4,7 @@ var sha1 = require('sha1');
 const { host } = require('../config');
 import { SingleUser } from './models/user';
 
-async function _login(email: string, password: string) {
+export async function _login(email: string, password: string) {
     const response = await axios.post(
         host + '/api/login',
         {
@@ -23,7 +23,7 @@ async function _login(email: string, password: string) {
     return response.data;
 }
 
-async function _checkToken() {
+export async function _checkToken() {
     const jwt = localStorage.getItem('token');
     if (jwt == null) {
         return false;
@@ -35,7 +35,7 @@ async function _checkToken() {
     return response;
 }
 
-async function _registration(data: SingleUser) {
+export async function _registration(data: SingleUser) {
     const response = await axios.post(host + '/api/registration', {
         name: data.name,
         surname: data.surname,
@@ -48,7 +48,7 @@ async function _registration(data: SingleUser) {
     }
 }
 
-async function _getUsers(page: number, resultsInPage: number) {
+export async function _getUsers(page: number, resultsInPage: number) {
     const response = await axios.post(host + '/api/get-users', {
         page: page,
         resultsInPage: resultsInPage,
@@ -56,7 +56,7 @@ async function _getUsers(page: number, resultsInPage: number) {
     return response;
 }
 
-async function _updateUser(id: number, name: string, surname: string) {
+export async function _updateUser(id: number, name: string, surname: string) {
     const response = await axios.post(host + '/api/update-user', {
         user_id: id,
         name: name,
@@ -65,25 +65,23 @@ async function _updateUser(id: number, name: string, surname: string) {
     return response;
 }
 
-async function _getSingleUser(user_id: number) {
+export async function _getSingleUser(user_id: number) {
     const response = await axios.post(host + '/api/get-single-user', {
         user_id: user_id,
     });
     return response;
 }
 
-async function _deleteUser(email: string) {
+export async function _deleteUser(email: string) {
     const response = await axios.post(host + '/api/delete-user', {
         email: email,
     });
     return response;
 }
 
-async function _getUserInfo(user_id: number) {
+export async function _getUserInfo(user_id: number) {
     const response = await axios.post(host + '/api/get-user-info', {
         user_id: user_id,
     });
     return response.data;
 }
-
-export { _login, _registration, _checkToken, _getUsers, _deleteUser, _getSingleUser, _updateUser, _getUserInfo };

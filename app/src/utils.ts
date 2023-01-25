@@ -7,7 +7,7 @@ function validateEmail(email: string): any {
 }
 
 function getEditedUser(): EditedUser {
-    return { id: '', admin: false, updated_at: '', created_at: '', deleted_at: '', name: '', surname: '', email: '' };
+    return { id: 0, admin: false, updated_at: '', created_at: '', deleted_at: '', name: '', surname: '', email: '', password: '' };
 }
 
 function getSingleUser(): SingleUser {

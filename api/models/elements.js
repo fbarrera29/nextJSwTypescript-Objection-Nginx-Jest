@@ -1,7 +1,7 @@
 import { Model, raw } from 'objection'
 import objectionSoftDelete from 'objection-js-soft-delete'
 
-import Sections from './sections'
+import Sections from './sections.js'
 
 const softDelete = objectionSoftDelete.default({
   columnName: 'deleted_at',

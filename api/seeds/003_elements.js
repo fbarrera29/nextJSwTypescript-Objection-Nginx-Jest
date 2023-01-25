@@ -3,19 +3,15 @@ import { insertSeedsByEnv } from '../utils/misc.js'
 const defaultData = [
   {
     id: 1,
-    name: 'First name',
-    surname: 'First surname',
-    email: 'first@email.com',
-    pwd_hash: '****',
-    admin: true,
+    section_id: 1,
+    title: 'First title',
+    description: 'First description',
   },
   {
     id: 2,
-    name: 'Second name',
-    surname: 'Second surname',
-    email: 'second@email.com',
-    pwd_hash: '****',
-    admin: false,
+    section_id: 2,
+    title: 'Second title',
+    description: 'Second description',
   },
 ]
 
@@ -25,10 +21,10 @@ const testingData = []
 const developmentData = []
 
 const seed = (knex) => {
-  return knex('users_new')
+  return knex('elements')
     .del()
     .then(() =>
-      knex('users_new').insert(
+      knex('elements').insert(
         insertSeedsByEnv({ defaultData, developmentData, testingData, stagingData, productionData }),
       ),
     )
