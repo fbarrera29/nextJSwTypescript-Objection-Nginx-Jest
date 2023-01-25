@@ -27,7 +27,7 @@ const Wrapper: React.FC<Props> = ({ children }) => {
             case '/user':
                 return 'User list';
             case '/user/[userId]':
-                return 'Edit user with id';
+                return 'Edit user by id';
         }
     };
 

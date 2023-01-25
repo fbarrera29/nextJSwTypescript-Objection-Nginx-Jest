@@ -79,4 +79,11 @@ async function _deleteUser(email: string) {
     return response;
 }
 
-export { _login, _registration, _checkToken, _getUsers, _deleteUser, _getSingleUser, _updateUser };
+async function _getUserInfo(user_id: number) {
+    const response = await axios.post(host + '/api/get-user-info', {
+        user_id: user_id,
+    });
+    return response.data;
+}
+
+export { _login, _registration, _checkToken, _getUsers, _deleteUser, _getSingleUser, _updateUser, _getUserInfo };

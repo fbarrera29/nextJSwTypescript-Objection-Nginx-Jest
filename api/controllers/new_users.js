@@ -1,5 +1,6 @@
 import { Model } from 'objection'
 
+import Sections from '../models/sections.js'
 import Users_new from '../models/users_new.js'
 import { errorResponse, successResponse } from '../utils/responseHelper.js'
 
@@ -45,6 +46,19 @@ const _getUsers = async (req, res) => {
   }
 }
 
+const _getUserInfo = async (req, res) => {
+  try {
+    const user = await getUser(req)
+    const sections = await Sections.query()
+      .select('sections.id', 'sections.name', 'sections.description', 'sections.type')
+      .where('sections.users_new_id', '=', req.body.user_id)
+    user.sections = sections
+    return successResponse({ data: user, res })
+  } catch (err) {
+    return errorResponse({ err, res })
+  }
+}
+
 const _updateUser = async (req, res) => {
   let trx
   try {
@@ -77,4 +91,4 @@ const _deleteUser = async (req, res) => {
   }
 }
 
-export { _registration, _getUsers, _deleteUser, _getSingleUser, _updateUser }
+export { _registration, _getUsers, _deleteUser, _getSingleUser, _updateUser, _getUserInfo }

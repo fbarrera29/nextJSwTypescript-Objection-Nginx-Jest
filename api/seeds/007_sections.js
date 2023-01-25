@@ -15,6 +15,13 @@ const defaultData = [
     description: 'Second description',
     type: 'example type',
   },
+  {
+    id: 3,
+    users_new_id: 1,
+    name: 'Third sections',
+    description: 'Third description',
+    type: 'example type',
+  },
 ]
 
 const productionData = []

@@ -1,6 +1,13 @@
 import { _checkToken, _login } from './controllers/auth.js'
 import _ping from './controllers/healthcheck.js'
-import { _deleteUser, _getSingleUser, _getUsers, _registration, _updateUser } from './controllers/new_users.js'
+import {
+  _deleteUser,
+  _getSingleUser,
+  _getUserInfo,
+  _getUsers,
+  _registration,
+  _updateUser,
+} from './controllers/new_users.js'
 import { _users, _usersWithGraph, _users_new, _users_newWithGraph } from './controllers/pagination.js'
 import { _transaction } from './controllers/transaction.js'
 
@@ -23,4 +30,5 @@ export default (router) => {
   router.post('/delete-user', _deleteUser)
   router.post('/get-single-user', _getSingleUser)
   router.post('/update-user', _updateUser)
+  router.post('/get-user-info', _getUserInfo)
 }
